@@ -1,0 +1,11 @@
+# Optional Render Blueprint. The site is stateless; there is NO database, private key,
+# or server-side SERV credential. Review the hosting plan and costs before deploy.
+services:
+  - type: web
+    name: covenant-website
+    runtime: docker
+    plan: free # Review Render's limits and costs before confirming deployment.
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: "3000"

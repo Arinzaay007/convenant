@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101c1d" />
+  <meta name="description" content="COVENANT: the treasury agent that stress-tests promises before money goes into an RWA vault." />
+  <title>COVENANT — Keep your word liquid</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/app.js" defer></script>
+  <script src="/pilot.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand-block">
+        <a class="brand" href="#top" aria-label="Covenant home"><span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="2"/><path d="M10 22.5L17 28.5L30 11.5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>COVENANT<span class="brand-period">.</span></span></a>
+        <p>Intelligence for the money<br/>you've already promised.</p>
+      </div>
+      <div class="sidebar-label">WORKSPACE <span>01 / 04</span></div>
+      <nav class="nav-list">
+        <a class="nav-link active" href="#top"><span class="nav-icon">◫</span> Command desk <span class="nav-arrow">↗</span></a>
+        <a class="nav-link" href="#mandate"><span class="nav-icon">◎</span> Treasury mandate</a>
+        <a class="nav-link" href="#commitments"><span class="nav-icon">≡</span> Commitments <span class="nav-count" id="nav-obligation-count">0</span></a>
+        <a class="nav-link" href="#vaults"><span class="nav-icon">◇</span> IXS vault routes</a>
+        <a class="nav-link" href="#evidence"><span class="nav-icon">▤</span> Evidence trail</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-callout"><span class="tiny-marker"></span><span>BUILT WITH<br/><strong>SERV Reasoning × IXS</strong></span></div>
+        <div class="sidebar-disclaimer">A planning prototype. No funds, keys, or transactions are held by this app.</div>
+        <div class="sidebar-edition">OPEN SERV HACKATHON <span>ED. 01 / 2026</span></div>
+      </div>
+    </aside>
+
+    <div class="main-wrap" id="top">
+      <header class="topbar">
+        <div class="breadcrumb">WORKSPACE <span>/</span> COMMAND DESK <span class="breadcrumb-dot"></span> <b>01</b></div>
+        <div class="topbar-right"><span id="live-connection" class="connection-pill"><span class="pulse-dot"></span> Checking IXS</span><button class="text-action" id="key-shortcut" type="button">Connect SERV <span>↗</span></button><div class="avatar">CV</div></div>
+      </header>
+
+      <main class="main-content">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy"><div class="eyebrow"><span class="hero-dot"></span> THE TREASURY'S SECOND OPINION <span class="eyebrow-line"></span> SEPTEMBER 2026</div>
+            <h1 id="hero-title">Let capital work.<br/><em>Keep promises liquid.</em></h1>
+            <p>Every deposit is a future obligation in disguise. COVENANT checks what you owe, what could go wrong, and exactly when your cash might run out—before it drafts an IXS vault action.</p>
+            <div class="hero-actions"><button class="primary-dark-btn" id="hero-run" type="button">Run the stress test <span>↗</span></button><a href="#evidence" class="hero-secondary">How decisions are made <span>↘</span></a></div>
+          </div>
+          <div class="hero-art" aria-hidden="true"><div class="hero-rings"><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><span class="ring r4"></span><div class="hero-center">C<span>V</span></div></div><div class="orbit-tag orbit-tag-a">DATED OBLIGATIONS</div><div class="orbit-tag orbit-tag-b">OPERATOR VERIFIED</div><div class="orbit-tag orbit-tag-c">LIQUIDITY FIRST</div></div>
+          <div class="hero-corner">01—<span>PROTECT THE PROMISE</span></div>
+        </section>
+
+        <div class="section-intro"><div><span class="eyebrow dark">01 / THE POSITION</span><h2>Scenario overview <span class="h2-period">.</span></h2></div><div class="section-intro-meta">NO EXAMPLE BALANCES LOADED <span>•</span> Enter verified inputs <span>•</span> USDC</div></div>
+        <div class="metric-grid" aria-label="Treasury metrics">
+          <article class="metric-card"><span class="metric-title">LIQUID TREASURY <span class="metric-icon">↗</span></span><strong id="metric-cash">—</strong><div class="metric-sub">Available now, not vault shares</div></article>
+          <article class="metric-card accent-card"><span class="metric-title">MAX. SAFE ALLOCATION <span class="metric-icon">◎</span></span><strong id="metric-safe">—</strong><div class="metric-sub" id="safe-caption">Under this scenario's assumptions</div></article>
+          <article class="metric-card"><span class="metric-title">PROMISES IN WINDOW <span class="metric-icon">▦</span></span><strong id="metric-owed">—</strong><div class="metric-sub" id="owed-caption">Enter dated commitments</div></article>
+          <article class="metric-card"><span class="metric-title">THE VERDICT <span class="metric-icon">↗</span></span><strong class="verdict-metric" id="metric-verdict">Not ready</strong><div class="metric-sub" id="verdict-caption">Waiting for operator inputs</div></article>
+        </div>
+
+        <div class="workspace-grid">
+          <div class="work-main">
+            <section class="panel proof-panel" id="proof" aria-labelledby="proof-title">
+              <div class="panel-head"><div><span class="eyebrow dark">02 / THE STRESS TEST</span><h2 id="proof-title">The liquidity line<span class="h2-period">.</span></h2><p>We count obligations when they're due. We never count pending redemptions as cash.</p></div><span class="evidence-chip">MATHEMATICS, NOT A MODEL</span></div>
+              <div class="scenario-switch" role="group" aria-label="Operator scenario"><button class="scenario-btn active" id="scenario-quiet" type="button">◌ &nbsp; Current obligations</button><button class="scenario-btn" id="scenario-storm" type="button">⚡ &nbsp; Add disruption reserve <span class="scenario-new">WHAT IF</span></button></div>
+              <div class="chart-wrap"><div class="chart-label">PROJECTED LIQUID CASH, AFTER PROPOSED ALLOCATION <span>USDC / DAILY</span></div><svg id="liquidity-chart" class="liquidity-chart" role="img" aria-label="Projected liquid cash over the scenario's review window" viewBox="0 0 780 214" preserveAspectRatio="none"></svg><div class="chart-axis" id="chart-axis"><span>TODAY</span><span>DAY +7</span><span>DAY +14</span><span>DAY +21</span><span>DAY +30</span></div></div>
+              <div class="chart-legend"><span><i class="legend-line mint"></i> Your plan</span><span><i class="legend-line muted"></i> No new deposit</span><span><i class="legend-line coral"></i> Minimum reserve</span></div>
+              <div id="counterexample" class="counterexample warn"><div class="counter-icon">!</div><div><span>REAL DATA REQUIRED</span><h3>No decision yet.</h3><p>Enter real cash, reserve, proposed allocation and at least one dated commitment. No sample results are loaded.</p></div></div>
+              <div class="proof-foot"><span>SAFETY RULE</span><p id="proof-rule">Cash − new allocation − commitments due ≥ minimum reserve, on every day inside the review window. Vault exits do not count as cash.</p></div>
+            </section>
+
+            <section class="panel commitments-panel" id="commitments" aria-labelledby="commitments-title">
+              <div class="panel-head line-head"><div><span class="eyebrow dark">03 / WHAT'S PROMISED</span><h2 id="commitments-title">Commitment ledger<span class="h2-period">.</span></h2><p>Scheduled payments and conditional service credits are both real exposures.</p></div><button type="button" class="outline-small" id="add-trigger">+ Add commitment</button></div>
+              <div class="ledger-head"><span>OBLIGATION</span><span>TYPE</span><span>DUE DATE</span><span>AMOUNT</span><span></span></div>
+              <div class="ledger-items" id="obligation-list" aria-live="polite"></div>
+              <form class="add-form" id="add-form" hidden>
+                <div class="add-form-top">NEW COMMITMENT <button type="button" class="icon-close" id="cancel-add" aria-label="Close form">×</button></div>
+                <div class="add-fields"><label>Description<input id="add-label" placeholder="e.g. Vendor payout" maxlength="100" required /></label><label>USDC<input id="add-amount" type="number" min="0.01" max="10000000" step="0.01" placeholder="2500" required /></label><label>Due<input id="add-due" type="date" required /></label><label>Type<select id="add-kind"><option value="scheduled">Scheduled</option><option value="performance">Performance</option><option value="event">Event-driven</option></select></label></div>
+                <button type="submit" class="dark-btn">Add to cash timeline <span>↗</span></button>
+              </form>
+              <div class="ledger-foot"><span><span class="source-legend manual"></span> Operator-entered data</span><span><span class="source-legend serv"></span> SERV-extracted items require review</span></div><div class="ledger-caveat">Service-credit coverage is an earmarked planning reserve—not legal escrow, a surety bond, or a guarantee to customers.</div>
+            </section>
+
+            <section class="panel evidence-panel" id="evidence" aria-labelledby="evidence-title">
+              <div class="panel-head line-head"><div><span class="eyebrow dark">04 / THE RECEIPT</span><h2 id="evidence-title">Evidence, not vibes<span class="h2-period">.</span></h2><p>Inspect what's observed, assumed, and generated. Export a decision receipt.</p></div><button type="button" class="outline-small" id="export-btn">↓ Export JSON</button></div>
+              <div class="evidence-grid"><div><span class="ev-num">01</span><strong>Observed</strong><p>IXS route, token decimals, settlement mode and vault state when available.</p></div><div><span class="ev-num">02</span><strong>Assumed</strong><p>Your cash, payment dates, reserve and stress-test exit delay.</p></div><div><span class="ev-num">03</span><strong>Computed</strong><p>Earliest shortage, maximum safe amount and the exact obligation that breaks your plan.</p></div></div>
+              <div class="run-log" id="run-log"><span class="log-circle"></span><span>No review recorded yet. Run the stress test to start the evidence trail.</span></div>
+              <div class="small-print">A passing stress test applies only to the supplied commitments and assumptions. It does not predict returns, guarantee vault liquidity, or constitute investment advice.</div>
+            </section>
+          </div>
+
+          <div class="work-side">
+            <section class="panel mandate-panel" id="mandate" aria-labelledby="mandate-title"><div class="side-head"><span class="eyebrow dark">THE MANDATE</span><span class="mini-tag">EDITABLE</span></div><h3 id="mandate-title">Set the boundary.</h3><p>These are operator inputs. COVENANT will not invent your cash balance or risk tolerance.</p>
+              <div class="field-grid"><label class="field"><span>Liquid USDC <span class="field-help" title="Cash available now, excluding all vault positions">ⓘ</span></span><div class="input-wrap"><span>$</span><input id="cash-input" type="number" min="0" step="0.01" placeholder="Enter cash" inputmode="decimal" /></div></label><label class="field"><span>Minimum reserve</span><div class="input-wrap"><span>$</span><input id="floor-input" type="number" min="0" step="0.01" placeholder="Enter floor" inputmode="decimal" /></div></label><label class="field"><span>Proposed deposit</span><div class="input-wrap"><span>$</span><input id="proposed-input" type="number" min="0" step="0.01" placeholder="Enter amount" inputmode="decimal" /></div></label><label class="field"><span>Existing IXS position <span class="field-help" title="Informational only. Never counted as liquid cash.">ⓘ</span></span><div class="input-wrap"><span>$</span><input id="existing-input" type="number" min="0" step="0.01" placeholder="0 if none" inputmode="decimal" /></div></label></div>
+              <div class="divider"></div><div class="select-row"><label for="window-input">Review window</label><select id="window-input"><option value="14">14 days</option><option value="30" selected>30 days</option><option value="60">60 days</option><option value="90">90 days</option></select></div><div class="select-row"><label for="lag-input">Assumed exit delay <span class="field-help" title="Stress-test assumption only; not an IXS guarantee.">ⓘ</span></label><select id="lag-input"><option value="1">1 day</option><option value="3" selected>3 days</option><option value="5">5 days</option><option value="7">7 days</option></select></div>
+              <button class="run-button" id="run-button" type="button">Run liquidity check <span>↗</span></button><div class="mandate-foot">Dry-run only · No funds are moved</div>
+            </section>
+
+            <section class="panel signal-panel" id="signal" aria-labelledby="signal-title"><div class="side-head"><span class="eyebrow dark">EXTERNAL SIGNAL</span><span class="signal-icon">↗</span></div><h3 id="signal-title">When the world moves.</h3><p>A forecast can change a reserve requirement. It cannot certify a claim or make an IXS redemption instant.</p><div class="weather-strip"><div><span class="weather-symbol">☁</span><span class="weather-place">PORT HARCOURT <small>7-DAY FORECAST</small></span></div><strong id="weather-value">Loading…</strong></div><div class="weather-note" id="weather-note">Live forecast via Open-Meteo. An operator must choose whether to add a liability.</div><label class="toggle-row" for="storm-toggle"><span><strong>Model disruption reserve</strong><small>Explicit what-if scenario, not an automatic alert</small></span><span class="switch"><input id="storm-toggle" type="checkbox" /><span class="slider"></span></span></label><div class="storm-fields" id="storm-fields" hidden><label>Contingent exposure, USDC<div class="input-wrap"><span>$</span><input id="storm-amount" type="number" min="0" step="0.01" placeholder="Set your own stress amount" inputmode="decimal" /></div></label><label>Scenario due date<input id="storm-date" type="date" /></label></div></section>
+
+            <section class="panel serv-panel" id="serv" aria-labelledby="serv-title"><div class="side-head"><span class="eyebrow dark">THE REASONING LAYER</span><span class="mini-tag mini-serv">SERV REASONING</span></div><h3 id="serv-title">Turn words into commitments.</h3><p>Paste an operator note. When you click Interpret, your note and key go to OpenServ; this app does not store your key. Check every suggestion yourself.</p><label class="note-label" for="note-input">UNSTRUCTURED INPUT</label><textarea id="note-input" rows="4" spellcheck="false" placeholder="Paste a real dated operations note only if you are authorised to share it with OpenServ."></textarea><label class="note-label" for="key-input">YOUR SERV API KEY <span class="key-helper">NEVER SAVED</span></label><div class="key-field"><input id="key-input" type="password" placeholder="Paste from console.openserv.ai" autocomplete="off" spellcheck="false" /><button type="button" id="toggle-key" aria-label="Show or hide API key">◉</button></div><button class="serv-button" id="interpret-button" type="button">Interpret with SERV <span>↗</span></button><div class="serv-output" id="serv-output">No SERV call made. Enter your own API key and note; suggestions appear only after a successful live response and operator review.</div></section>
+
+            <section class="panel vault-panel" id="vaults" aria-labelledby="vault-title"><div class="side-head"><span class="eyebrow dark">LIVE INTEGRATION</span><span class="live-indicator"><span></span> IXS MCP</span></div><h3 id="vault-title">A real vault. An unsigned plan.</h3><p>Live vault metadata from IXS. When safe, request actual approve + deposit calldata. The server never signs or sends it; a separate opt-in wallet pilot is below.</p><div id="vault-list" class="vault-list"><div class="vault-loading">Reading live IXS vaults…</div></div><div class="vault-meta" id="vault-meta">Choose a route to inspect its live settlement status.</div><label class="note-label" for="wallet-input">PUBLIC EVM ADDRESS <span class="key-helper">YOUR OWN ADDRESS · NO PRIVATE KEYS</span></label><input id="wallet-input" class="wallet-input" placeholder="0x… your public address" spellcheck="false" autocomplete="off" /><button id="prepare-button" type="button" class="prepare-button" disabled>Prepare unsigned deposit <span>↗</span></button><div class="prepare-result" id="prepare-result" aria-live="polite">Run a passing stress test and choose an IXS route first.</div></section>
+
+            <section class="panel pilot-panel" id="pilot" aria-labelledby="pilot-title"><div class="side-head"><span class="eyebrow dark">OPTIONAL MAINNET PROOF</span><span class="mini-tag mini-risk">HARD CAP · $1 USDC</span></div><h3 id="pilot-title">Your wallet. Your call.</h3><p>This is <strong>separate from your operator-entered treasury ledger</strong>. A $1 deposit can lose value; BNB gas is extra. Never use funds owed to someone else.</p><div class="pilot-capacity unknown" id="pilot-capacity" role="status">No wallet checked. Connect your own BNB Chain address for a live, wallet-specific on-chain limit.</div><button type="button" class="pilot-connect" id="pilot-connect">Connect your BNB Chain wallet <span>↗</span></button><div id="pilot-wallet" class="pilot-wallet">Not connected. No wallet permission requested yet.</div><label class="field pilot-floor"><span>Cash floor to retain in this wallet (USDC)</span><div class="input-wrap"><span>$</span><input id="pilot-floor" type="number" min="0" step="0.01" placeholder="Enter 0 if none" inputmode="decimal" /></div></label><label class="pilot-ack"><input id="pilot-dedicated" type="checkbox" /><span>This is my own separate test wallet, not the marketplace's demo treasury; I confirm its USDC has no dated obligations in the next 30 days beyond this floor.</span></label><label class="pilot-ack"><input id="pilot-risk" type="checkbox" /><span>I reviewed the exact BNB Chain USDC/vault addresses and accept potential loss of the $1 principal, separate gas fees, and uncertain withdrawal timing. I will confirm each wallet prompt myself.</span></label><button type="button" class="pilot-prepare" id="pilot-prepare" disabled>Check chain &amp; prepare exactly $1 <span>↗</span></button><div id="pilot-plan" class="pilot-plan" aria-live="polite">No transaction is available until your own wallet passes the on-chain check, you declare a cash floor, and you acknowledge the risks.</div><div id="pilot-actions" class="pilot-actions" hidden><button type="button" class="pilot-step" id="pilot-approve" disabled>1 / Approve exactly $1 USDC in wallet <span>↗</span></button><button type="button" class="pilot-step" id="pilot-deposit" disabled>2 / Deposit exactly $1 USDC in wallet <span>↗</span></button><div id="pilot-progress" class="pilot-progress" aria-live="polite">No transaction requested.</div></div><div class="pilot-legal">Pinned BNB Chain contracts (click to inspect):<br />USDC · <a href="https://bscscan.com/token/0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d" target="_blank" rel="noreferrer"><code>0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d</code> ↗</a><br />Vault · <a href="https://bscscan.com/address/0xc975a3EeF2e49F8eDdEf585340C43f15300fCB82" target="_blank" rel="noreferrer"><code>0xc975a3EeF2e49F8eDdEf585340C43f15300fCB82</code> ↗</a><br />The server has no signing key; only your wallet can submit a transaction after you confirm it.</div></section>
+          </div>
+        </div>
+        <footer class="footer"><div class="footer-brand">COVENANT<span>.</span><small>A prototype for the agentic economy.</small></div><div class="footer-links"><a href="https://www.openserv.ai/hackathon" target="_blank" rel="noreferrer">Hackathon ↗</a><a href="https://docs.openserv.ai/serv-reasoning/introduction" target="_blank" rel="noreferrer">SERV Docs ↗</a><a href="https://api-v2.ixs.finance/docs" target="_blank" rel="noreferrer">IXS API ↗</a></div><div class="footer-end">NO CUSTODY · NO SERVER SIGNING · WALLET OPT-IN · NO GUARANTEED RETURNS</div></footer>
+      </main>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

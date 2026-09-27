@@ -1,0 +1,13 @@
+{
+  "name": "covenant-liquidity-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A no-custody SERV + IXS prototype that checks dated treasury obligations before drafting unsigned RWA vault intents.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check server.mjs && node --check engine.mjs && node --check pilot.mjs && node --check public/app.js && node --check public/pilot.js && npm test"
+  },
+  "engines": { "node": ">=20" }
+}
