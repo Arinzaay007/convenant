@@ -399,9 +399,10 @@ async function handle(req, res) {
 }
 
 export function createServer() { return http.createServer(handle); }
-// Vercel imports a root server.mjs and captures its listener. Keep ordinary
-// library imports side-effect-free for offline tests, while starting whenever
-// Vercel invokes this module (VERCEL=1) or Node executes it directly.
-if (process.env.VERCEL === '1' || (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))) {
+// Vercel imports root server.mjs as a module and captures the listener. It must
+// start at module startup even if process.argv and optional system env differ.
+// Node's test runner sets NODE_TEST_CONTEXT, so importing createServer in tests
+// does not open an extra production listener.
+if (!process.env.NODE_TEST_CONTEXT) {
   createServer().listen(PORT, '0.0.0.0', () => console.log(`COVENANT ready on 0.0.0.0:${PORT}`));
 }

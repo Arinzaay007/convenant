@@ -17,7 +17,7 @@ npm run check
 # Docker alternative: docker build -t covenant . && docker run -p 3000:3000 covenant
 ```
 
-For a wallet, publish to a **trusted HTTPS** host and open the site as a **top-level tab**. A sandbox iframe may block wallet injection, and this temporary Arena preview may disappear. Follow [DEPLOY.md](DEPLOY.md) for **GitHub + Vercel** or Render steps. On Vercel, the root `server.mjs` starts under its Node.js server runtime; `vercel.json` bundles `public/**` and sets the same CSP for static assets. Hosted behavior still requires a live deployment check; local tests are not proof of Vercel deployment. Do not send passwords, private keys, wallet seeds or SERV keys through chat or commit them to a repository.
+For a wallet, publish to a **trusted HTTPS** host and open the site as a **top-level tab**. A sandbox iframe may block wallet injection, and this temporary Arena preview may disappear. Follow [DEPLOY.md](DEPLOY.md) for **GitHub + Vercel** or Render steps. On Vercel, the root `server.mjs` starts its HTTP listener at module startup under its Node.js server runtime; `vercel.json` bundles `public/**` and sets the same CSP for static assets. Hosted behavior still requires a live deployment check; local tests are not proof of Vercel deployment. Do not send passwords, private keys, wallet seeds or SERV keys through chat or commit them to a repository.
 
 ## Use real inputs, not an example balance
 
