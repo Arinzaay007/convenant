@@ -1,10 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "functions": {
-    "server.mjs": {
-      "includeFiles": "public/**"
-    }
-  },
+  "framework": null,
+  "outputDirectory": "public",
   "headers": [
     {
       "source": "/(.*)",

@@ -1,7 +1,7 @@
 import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
-import { createServer } from '../server.mjs';
+import { createServer } from '../covenant-server.mjs';
 import { PILOT, addressWord, uintWord } from '../pilot.mjs';
 
 const server = createServer();

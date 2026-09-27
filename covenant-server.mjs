@@ -6,7 +6,6 @@ import { runCheck, moneyToCents, centsToMoney } from './engine.mjs';
 import { PILOT, EVM_ADDRESS, addressWord, parseUint256, parseAddressWord, safeUSDCFromUnits, validatePilotDraft } from './pilot.mjs';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), 'public');
-const PORT = Number(process.env.PORT || 3000);
 const IXS = 'https://api-v2.ixs.finance';
 const SERV = 'https://inference-api.openserv.ai/v1/chat/completions';
 const ADDRESS = /^0x[a-fA-F0-9]{40}$/;
@@ -31,6 +30,21 @@ function output(res, status, value) {
   res.end(JSON.stringify(value));
 }
 async function parseBody(req) {
+  // Vercel's Node function helper may pre-parse JSON and consume the request
+  // stream. The local HTTP server receives an ordinary IncomingMessage.
+  if ('body' in req) {
+    let value;
+    try { value = req.body; }
+    catch { throw fail(400, 'Invalid JSON.'); }
+    if (value !== undefined && value !== null) {
+      let text;
+      try { text = typeof value === 'string' ? value : JSON.stringify(value); }
+      catch { throw fail(400, 'Invalid JSON.'); }
+      if (text.length > 12500) throw fail(413, 'Request too large.', 'LIMIT');
+      try { return typeof value === 'string' ? JSON.parse(text || '{}') : value; }
+      catch { throw fail(400, 'Invalid JSON.'); }
+    }
+  }
   let buffer = '';
   for await (const part of req) {
     buffer += part.toString('utf8');
@@ -40,7 +54,7 @@ async function parseBody(req) {
   catch { throw fail(400, 'Invalid JSON.'); }
 }
 function throttle(req, bucket = 'external', limit = 12) {
-  const who = `${String(req.socket.remoteAddress || 'unknown')}:${bucket}`;
+  const who = `${String(req.socket?.remoteAddress || 'unknown')}:${bucket}`;
   const record = calls.get(who) || { at: 0, count: 0 };
   if (Date.now() - record.at > 60_000) { record.at = Date.now(); record.count = 0; }
   record.count += 1;
@@ -342,7 +356,7 @@ async function prepareIntent(input) {
   };
 }
 
-async function handle(req, res) {
+export async function handle(req, res) {
   const url = new URL(req.url || '/', 'http://localhost');
   try {
     if (url.pathname.startsWith('/api/')) {
@@ -399,10 +413,3 @@ async function handle(req, res) {
 }
 
 export function createServer() { return http.createServer(handle); }
-// Vercel imports root server.mjs as a module and captures the listener. It must
-// start at module startup even if process.argv and optional system env differ.
-// Node's test runner sets NODE_TEST_CONTEXT, so importing createServer in tests
-// does not open an extra production listener.
-if (!process.env.NODE_TEST_CONTEXT) {
-  createServer().listen(PORT, '0.0.0.0', () => console.log(`COVENANT ready on 0.0.0.0:${PORT}`));
-}
