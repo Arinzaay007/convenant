@@ -399,6 +399,9 @@ async function handle(req, res) {
 }
 
 export function createServer() { return http.createServer(handle); }
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+// Vercel imports a root server.mjs and captures its listener. Keep ordinary
+// library imports side-effect-free for offline tests, while starting whenever
+// Vercel invokes this module (VERCEL=1) or Node executes it directly.
+if (process.env.VERCEL === '1' || (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))) {
   createServer().listen(PORT, '0.0.0.0', () => console.log(`COVENANT ready on 0.0.0.0:${PORT}`));
 }
